@@ -33,3 +33,6 @@
     session_unset();
     session_destroy();
  ?>
+ <html>
+    <a href="form.php" value="Back to start" > </a>
+ </html>

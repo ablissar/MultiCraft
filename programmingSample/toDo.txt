@@ -1,9 +1,3 @@
 1. Client-side validation (JS, form.php)
 2. Server-side validation (PHP, database.php)
 3. Handle stability (multiple browsers, window resize, etc.)
-4. Style
-    - Ask Jace
-    - Split form into multiple pages?
-        * Username, password, confirm password
-        * Email, name, etc.
-

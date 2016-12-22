@@ -3,9 +3,43 @@
     session_start();
     // Server-side validation for info from last form
 
-    // Once info has been validated, save it to session
-    $_SESSION["username"] = $_POST["username"];
-    $_SESSION["password"] = $_POST["password"];
+    // If the variables are unset, return to previous page and set error flag.
+    if( !isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["passwordConfirm"]) ) {
+        $_SESSION["emptyFields"] = true;
+        Header("Location: form.php");
+    }
+    // If they are set, sanitize them.
+    else {
+        $username = sanitizeInput($_POST["username"]);
+        $password = sanitizeInput($_POST["password"]);
+        $passwordConfirm = sanitizeInput($_POST["passwordConfirm"]);
+    }
+
+    // Checks that each field meets minimum length requirement.
+    if( strlen($username) == 0 || strlen($password) < 8 || strlen($passwordConfirm) == 0 ) {
+        $_SESSION["emptyFields"] = true;
+        Header("Location: form.php");
+    }
+    // Checks that password matches confirmation field.
+    else if( $password != $passwordConfirm ) {
+        $_SESSION["passwordMismatch"] = true;
+        Header("Location: form.php");
+    }
+    // If everything is valid, set error flags to false and save info to session.
+    else {
+        $_SESSION["emptyFields"] = false;
+        $_SESSION["passwordMismatch"] = false;
+        $_SESSION["username"] = $username;
+        $_SESSION["password"] = $password;
+
+    }
+
+    function sanitizeInput($input) {
+      $input = trim($input);
+      $input = stripslashes($input);
+      $input = htmlspecialchars($input);
+      return $input;
+    }
  ?>
 <html>
     <title>Basic Info Form</title>

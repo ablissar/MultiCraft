@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <?php
     session_start();
+    if(isset($_SESSION["emptyFields"]) && $_SESSION["emptyFields"] == true) {
+        echo ("Error: please fill in every field.");
+        $_SESSION["emptyFields"] = false;
+    }
+    else if (isset($_SESSION["passwordMismatch"]) && $_SESSION["passwordMismatch"] == true) {
+        echo ("Error: passwords must match.");
+        $_SESSION["passwordMismatch"] = false;
+    }
  ?>
 <!--<script>
     // Client-side validation
