@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-
-<script>
+<?php
+    session_start();
+ ?>
+<!--<script>
     // Client-side validation
     function validateForm() {
     var valid = true;
@@ -58,7 +60,7 @@
   function validateAddress() {
 
   }
-</script>
+</script> -->
 
 <html>
     <title>User Registration Form</title>
@@ -66,11 +68,30 @@
         <link rel="stylesheet" type="text/css" href="formStyle.css">
     </head>
     <body>
+        <script>
+            function showPassHint() {
+                showObj(document.getElementById('passHint'));
+            }
+            function hidePassHint() {
+                hideObj(document.getElementById('passHint'));
+            }
+
+            function showObj(obj) {
+                obj.style.display="inline";
+            }
+            function hideObj(obj) {
+                obj.style.display="none";
+            }
+        </script>
+
         <h1>User Registration Form</h1>
         <div>
         <form action="userInfoForm.php" method="post" name="form" >
             <label> Username: </label> <br /> <input type="text" name="username" /> <br />
-            <label> Password: </label> <br /> <input type="password" name="password" /> <br />
+            <label> Password: </label>
+            <img onmouseover="showPassHint()" onmouseout="hidePassHint()" src="hint.jpeg" height="20px" width="20px"/> <br />
+            <p style="display:none" id="passHint"> Password must be greater than 8 characters. <br /> </p>
+            <input type="password" name="password" /> <br />
             <label> Confirm Password: </label> <br /> <input type="password" name="passwordConfirm" /> <br />
             <input type="submit" value="Submit" />
             <input type="reset"  />

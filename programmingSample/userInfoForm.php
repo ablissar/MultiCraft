@@ -1,3 +1,8 @@
+<!DOCTYPE HTML>
+<?php
+    // Server-side validation for info from last form
+    //if(isset)
+ ?>
 <html>
     <title>Basic Info Form</title>
     <head>
