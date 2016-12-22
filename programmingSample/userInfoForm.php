@@ -4,7 +4,6 @@
     include('header.php');
 
     // === Server-side validation ===
-
     // First check that variables are set (form has been submitted).
     if( isset($_POST["name"]) ) {
         if( isset($_POST["gender"]) ) {

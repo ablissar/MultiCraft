@@ -4,7 +4,6 @@
     include('header.php');
 
     // === Server-side validation ===
-
     // First check that variables are set (form has been submitted).
     if( isset($_POST["username"]) ) {
         // Then, sanitize each input field (sanitizeInput() can be found in 'header.php').
