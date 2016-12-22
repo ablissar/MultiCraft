@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 
 <script>
     // Client-side validation
@@ -59,3 +59,26 @@
 
   }
 </script>
+
+<html>
+    <title>User Registration Form</title>
+    <body>
+        <h1>User Registration Form</h1>
+        <form action="database.php" method="post" name="form" >
+            Username: <input type="text" name="username" /> <br />
+            Password: <input type="password" name="password" /> <br />
+            Confirm Password: <input type="password" name="passwordConfirm" /> <br />
+            Email: <input type="email" name="email" /> <br />
+            Name: <input type="text" name="name" /> <br />
+            Gender: <br />
+            Male: <input type="radio" name="gender" value="Male" />
+            Female: <input type="radio" name="gender" value="Female"  />
+            Other: <input type="radio" name="gender" value="Other"  /> <br />
+            Birthdate: <input type="text" name="birthdate" /> <br />
+            Phone: <input type="number" name="phone" /> <br />
+            Address: <input type="text" name="address" /> <br />
+            <input type="reset"  />
+            <input type="submit" />
+        </form>
+    </body>
+</html>
