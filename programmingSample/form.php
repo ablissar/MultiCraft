@@ -5,8 +5,9 @@
 
     // === Server-side validation ===
 
-    // If the variables are unset, return to previous page and set error flag.
+    // First check that variables are set (form has been submitted).
     if( isset($_POST["username"]) ) {
+        // Then, sanitize each input field (sanitizeInput() can be found in 'header.php').
         $username = sanitizeInput($_POST["username"]);
         $password = sanitizeInput($_POST["password"]);
         $passwordConfirm = sanitizeInput($_POST["passwordConfirm"]);
@@ -19,7 +20,7 @@
         else if( $password != $passwordConfirm ) {
             echo ("Error: Passwords must match.");
         }
-        // If everything is valid, set error flags to false and save info to session.
+        // If everything is valid, save info to session and move to next page.
         else {
             $_SESSION["username"] = $username;
             $_SESSION["password"] = $password;
@@ -93,19 +94,13 @@
         <link rel="stylesheet" type="text/css" href="formStyle.css">
     </head>
     <body>
+        <!-- Functions for showing/hiding objects -->
         <script>
             function showPassHint() {
                 showObj(document.getElementById('passHint'));
             }
             function hidePassHint() {
                 hideObj(document.getElementById('passHint'));
-            }
-
-            function showObj(obj) {
-                obj.style.display="inline";
-            }
-            function hideObj(obj) {
-                obj.style.display="none";
             }
         </script>
 

@@ -5,8 +5,9 @@
 
     // === Server-side validation ===
 
-    // If the variables are unset, return to previous page and set error flag.
+    // First check that variables are set (form has been submitted).
     if( isset($_POST["email"]) ) {
+        // Then, sanitize each input field (sanitizeInput() can be found in 'header.php').
         $email = sanitizeInput($_POST["email"]);
         $phone = sanitizeInput($_POST["phone"]);
         $street = sanitizeInput($_POST["street"]);
@@ -19,7 +20,7 @@
             || strlen($city) == 0 || strlen($state) == 0 || strlen($zip) == 0 ) {
             echo("Error: Some fields do not meet minimum length requirement.");
         }
-        // If everything is valid, set error flags to false and save info to session.
+        // If everything is valid, save info to session and move to next page.
         else {
             $_SESSION["email"] = $email;
             $_SESSION["phone"] = $phone;

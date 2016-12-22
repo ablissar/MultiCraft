@@ -5,8 +5,10 @@
 
     // === Server-side validation ===
 
+    // First check that variables are set (form has been submitted).
     if( isset($_POST["name"]) ) {
         if( isset($_POST["gender"]) ) {
+            // Then, sanitize each input field (sanitizeInput() can be found in 'header.php').
             $name = sanitizeInput($_POST["name"]);
             $gender = sanitizeInput($_POST["gender"]);
             $birthdate = sanitizeInput($_POST["birthdate"]);
@@ -15,7 +17,7 @@
             if( strlen($name) == 0 || strlen($gender) == 0 || strlen($birthdate) == 0 ) {
                 echo("Error: Some fields do not meet minimum length requirement.");
             }
-            // If everything is valid, set error flags to false and save info to session.
+            // If everything is valid, save info to session and move to next page.
             else {
                 $_SESSION["name"] = $name;
                 $_SESSION["gender"] = $gender;
