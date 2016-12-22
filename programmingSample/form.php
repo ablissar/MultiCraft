@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <?php
     session_start();
-    if(isset($_SESSION["emptyFields"]) && $_SESSION["emptyFields"] == true) {
-        echo ("Error: please fill in every field.");
-        $_SESSION["emptyFields"] = false;
-    }
-    else if (isset($_SESSION["passwordMismatch"]) && $_SESSION["passwordMismatch"] == true) {
-        echo ("Error: passwords must match.");
-        $_SESSION["passwordMismatch"] = false;
+    include('header.php');
+
+    // === Server-side validation ===
+
+    // If the variables are unset, return to previous page and set error flag.
+    if( isset($_POST["username"]) ) {
+        $username = sanitizeInput($_POST["username"]);
+        $password = sanitizeInput($_POST["password"]);
+        $passwordConfirm = sanitizeInput($_POST["passwordConfirm"]);
+
+        // Checks that each field meets minimum length requirement.
+        if( strlen($username) == 0 || strlen($password) < 8 || strlen($passwordConfirm) == 0 ) {
+            echo("Error: Some fields do not meet minimum length requirement.");
+        }
+        // Checks that password matches confirmation field.
+        else if( $password != $passwordConfirm ) {
+            echo ("Error: Passwords must match.");
+        }
+        // If everything is valid, set error flags to false and save info to session.
+        else {
+            $_SESSION["username"] = $username;
+            $_SESSION["password"] = $password;
+            Header("Location: userInfoForm.php");
+        }
     }
  ?>
 <!--<script>
@@ -94,7 +111,7 @@
 
         <h1>User Registration Form</h1>
         <div>
-        <form action="userInfoForm.php" method="post" name="form" >
+        <form action="form.php" method="post" name="form" >
             <label> Username: </label> <br /> <input type="text" name="username" /> <br />
             <label> Password: </label>
             <img onmouseover="showPassHint()" onmouseout="hidePassHint()" src="hint.jpeg" height="20px" width="20px"/> <br />

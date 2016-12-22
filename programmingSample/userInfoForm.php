@@ -1,46 +1,34 @@
 <!DOCTYPE HTML>
 <?php
     session_start();
-    // Server-side validation for info from last form
+    include('header.php');
 
-    // If the variables are unset, return to previous page and set error flag.
-    if( !isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["passwordConfirm"]) ) {
-        $_SESSION["emptyFields"] = true;
-        Header("Location: form.php");
-    }
-    // If they are set, sanitize them.
-    else {
-        $username = sanitizeInput($_POST["username"]);
-        $password = sanitizeInput($_POST["password"]);
-        $passwordConfirm = sanitizeInput($_POST["passwordConfirm"]);
-    }
+    // === Server-side validation ===
 
-    // Checks that each field meets minimum length requirement.
-    if( strlen($username) == 0 || strlen($password) < 8 || strlen($passwordConfirm) == 0 ) {
-        $_SESSION["emptyFields"] = true;
-        Header("Location: form.php");
-    }
-    // Checks that password matches confirmation field.
-    else if( $password != $passwordConfirm ) {
-        $_SESSION["passwordMismatch"] = true;
-        Header("Location: form.php");
-    }
-    // If everything is valid, set error flags to false and save info to session.
-    else {
-        $_SESSION["emptyFields"] = false;
-        $_SESSION["passwordMismatch"] = false;
-        $_SESSION["username"] = $username;
-        $_SESSION["password"] = $password;
+    if( isset($_POST["name"]) ) {
+        if( isset($_POST["gender"]) ) {
+            $name = sanitizeInput($_POST["name"]);
+            $gender = sanitizeInput($_POST["gender"]);
+            $birthdate = sanitizeInput($_POST["birthdate"]);
 
-    }
-
-    function sanitizeInput($input) {
-      $input = trim($input);
-      $input = stripslashes($input);
-      $input = htmlspecialchars($input);
-      return $input;
+            // Checks that each field meets minimum length requirement.
+            if( strlen($name) == 0 || strlen($gender) == 0 || strlen($birthdate) == 0 ) {
+                echo("Error: Some fields do not meet minimum length requirement.");
+            }
+            // If everything is valid, set error flags to false and save info to session.
+            else {
+                $_SESSION["name"] = $name;
+                $_SESSION["gender"] = $gender;
+                $_SESSION["birthdate"] = $birthdate;
+                Header("Location: contactInfoForm.php");
+            }
+        }
+        else {
+            echo("Error: Some fields not set.");
+        }
     }
  ?>
+
 <html>
     <title>Basic Info Form</title>
     <head>
@@ -49,8 +37,7 @@
     <body>
         <h1>Basic Info Form</h1>
         <div>
-        <form action="contactInfoForm.php" method="post" name="form" >
-            <label> Email: </label> <br /> <input type="email" name="email" /> <br />
+        <form action="userInfoForm.php" method="post" name="form" >
             <label> Name: </label> <br /> <input type="text" name="name" /> <br />
             <label> Gender: </label> <br />
             Male: <input type="radio" name="gender" value="Male" />
