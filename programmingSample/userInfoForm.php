@@ -1,7 +1,11 @@
 <!DOCTYPE HTML>
 <?php
+    session_start();
     // Server-side validation for info from last form
-    //if(isset)
+
+    // Once info has been validated, save it to session
+    $_SESSION["username"] = $_POST["username"];
+    $_SESSION["password"] = $_POST["password"];
  ?>
 <html>
     <title>Basic Info Form</title>

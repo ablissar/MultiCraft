@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<?php
+    session_start();
+    // Server-side validation for info from last form
+
+    // Once info has been validated, save it to session
+    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["name"] = $_POST["name"];
+    $_SESSION["gender"] = $_POST["gender"];
+    $_SESSION["birthdate"] = $_POST["birthdate"];
+ ?>
+
 <html>
     <title>Contact Info Form</title>
     <head>
