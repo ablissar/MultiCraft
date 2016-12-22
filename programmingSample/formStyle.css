@@ -35,3 +35,8 @@ input[type="reset"] {
     margin-top: 10px;
     float: right;
 }
+
+button {
+    display: block;
+    margin: 0 auto;
+}
