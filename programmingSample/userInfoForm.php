@@ -37,6 +37,32 @@
     }
  ?>
 
+ <!--- Client-side validation -->
+ <script>
+     // Note: all fields are required by browser, and so are assumed to be non-null.
+     function validateForm() {
+         var birthdate = document.forms["form"]["birthdate"].value;
+
+         // Checks that birthdate format is correct (only needed for Firefox).
+         if( -1 == birthdate.indexOf("/") ) {
+             document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
+             return false;
+         }
+         birthdate = birthdate.split("/");
+         if( birthdate.length < 3 ) {
+             document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
+             return false;
+         }
+         if( birthdate[0].length != 2 || birthdate[1].length != 2 || birthdate[2].length != 4) {
+             document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
+             return false;
+         }
+
+         return true;
+     }
+ </script>
+
+
 <html>
     <title>Basic Info Form</title>
     <head>
@@ -45,15 +71,18 @@
     <body>
         <h1>Basic Info Form</h1>
         <div class="clearfix">
-        <form action="userInfoForm.php" method="post" name="form" >
+        <form action="userInfoForm.php" method="post" name="form" onsubmit="return validateForm()" >
             <label> Name: </label> <br />
-                <input type="text" name="name" value="<?php echoVar('name')?>"/> <br />
+                <input type="text" name="name" value="<?php echoVar('name')?>" required/> <br />
             <label> Gender: </label> <br />
-                Male: <input type="radio" name="gender" value="Male" />
+                Male: <input type="radio" name="gender" value="Male" required/>
                 Female: <input type="radio" name="gender" value="Female" />
                 Other: <input type="radio" name="gender" value="Other" /> <br />
-            <label> Birthdate: </label> <br />
-                <input type="text" name="birthdate" value="<?php echoVar('birthdate')?>" /> <br />
+            <label> Birthdate: </label>
+                <img onmouseover="showObj(document.getElementById('birthHint'))" onmouseout="hideObj(document.getElementById('birthHint'))" src="hint.jpeg" height="20px" width="20px"/> <br />
+                <p style="display:none" id="birthHint"> mm/dd/yyyy <br /> </p>
+                <input type="date" name="birthdate" value="<?php echoVar('birthdate')?>" required/> <br />
+                <p id="birthWarning">  </p>
             <input type="submit" value="Submit" />
         </form>
         <!-- Form with hidden input to reset fields. -->

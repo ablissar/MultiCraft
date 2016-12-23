@@ -70,16 +70,6 @@
         <link rel="stylesheet" type="text/css" href="formStyle.css">
     </head>
     <body>
-        <!-- Functions for showing/hiding objects -->
-        <script>
-            function showPassHint() {
-                showObj(document.getElementById('passHint'));
-            }
-            function hidePassHint() {
-                hideObj(document.getElementById('passHint'));
-            }
-        </script>
-
         <h1>User Registration Form</h1>
         <div class="clearfix">
         <form action="form.php" method="post" name="form" onsubmit="return validateForm()">
@@ -87,7 +77,7 @@
                 <input type="text" name="username" value="<?php echoVar('username')?>" required/> <br />
                 <p id="usernameWarning"></p>
             <label> Password: </label>
-                <img onmouseover="showPassHint()" onmouseout="hidePassHint()" src="hint.jpeg" height="20px" width="20px"/> <br />
+                <img onmouseover="showObj(document.getElementById('passHint'))" onmouseout="hideObj(document.getElementById('passHint'))" src="hint.jpeg" height="20px" width="20px"/> <br />
                 <p style="display:none" id="passHint"> Password must be greater than 8 characters and contain at least one letter and one number. <br /> </p>
                 <input type="password" name="password" value="<?php echoVar('password')?>" required/> <br />
                 <p id="passwordWarning"></p>
