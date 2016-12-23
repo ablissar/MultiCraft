@@ -23,8 +23,8 @@
         $zip = sanitizeInput($_POST["zip"]);
 
         // Checks that each field meets minimum length requirement.
-        if( strlen($email) == 0 || strlen($phone) == 0 || strlen($street) == 0
-            || strlen($city) == 0 || strlen($state) == 0 || strlen($zip) == 0 ) {
+        if( strlen($email) == 0 || strlen($phone) != 10 || strlen($street) == 0
+            || strlen($city) == 0 || strlen($state) != 2 || strlen($zip) !=  5) {
             echo("Error: Some fields do not meet minimum length requirement.");
         }
         // If everything is valid, save info to session and move to next page.

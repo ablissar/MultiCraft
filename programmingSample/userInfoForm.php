@@ -28,7 +28,7 @@
             $birthdate = sanitizeInput($_POST["birthdate"]);
 
             // Checks that each field meets minimum length requirement.
-            if( strlen($name) == 0 || strlen($gender) == 0 || strlen($birthdate) == 0 ) {
+            if( strlen($name) == 0 || strlen($gender) == 0 || strlen($birthdate) != 10 ) {
                 echo("Error: Some fields do not meet minimum length requirement.");
             }
             // If everything is valid, save info to session and move to next page.
@@ -52,16 +52,16 @@
          var birthdate = document.forms["form"]["birthdate"].value;
 
          // Checks that birthdate format is correct (only needed for Firefox).
-         if( -1 == birthdate.indexOf("/") ) {
+         if( -1 == birthdate.indexOf("-") ) {
              document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
              return false;
          }
-         birthdate = birthdate.split("/");
+         birthdate = birthdate.split("-");
          if( birthdate.length < 3 ) {
              document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
              return false;
          }
-         if( birthdate[0].length != 2 || birthdate[1].length != 2 || birthdate[2].length != 4
+         if( birthdate[0].length != 4 || birthdate[1].length != 2 || birthdate[2].length != 2
                 || isNaN(birthdate[0]) || isNaN(birthdate[1]) || isNaN(birthdate[2]) ) {
              document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
              return false;
@@ -89,7 +89,7 @@
                 Other: <input type="radio" name="gender" value="Other" /> <br />
             <label> Birthdate: </label>
                 <img onmouseover="showObj(document.getElementById('birthHint'))" onmouseout="hideObj(document.getElementById('birthHint'))" src="hint.jpeg" height="20px" width="20px"/> <br />
-                <p style="display:none" id="birthHint"> Format: mm/dd/yyyy <br /> </p>
+                <p style="display:none" id="birthHint"> Format: yyyy-mm-dd <br /> </p>
                 <input type="date" name="birthdate" value="<?php echoVar('birthdate')?>" required/> <br />
                 <p id="birthWarning">  </p>
             <input type="submit" value="Submit" />
