@@ -1,4 +1,6 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+
+<!-- Reset handling and server-side validation -->
 <?php
     session_start();
     include('header.php');
@@ -37,8 +39,8 @@
     }
  ?>
 
- <!--- Client-side validation -->
- <script>
+<!--- Client-side validation -->
+<script>
      // Note: all fields are required by browser, and so are assumed to be non-null.
      function validateForm() {
          var birthdate = document.forms["form"]["birthdate"].value;
@@ -62,14 +64,14 @@
      }
  </script>
 
-
+<!-- Form -->
 <html>
-    <title>Basic Info Form</title>
+    <title>Basic Information</title>
     <head>
         <link rel="stylesheet" type="text/css" href="formStyle.css">
     </head>
     <body>
-        <h1>Basic Info Form</h1>
+        <h1>Basic Information</h1>
         <div class="clearfix">
         <form action="userInfoForm.php" method="post" name="form" onsubmit="return validateForm()" >
             <label> Name: </label> <br />
@@ -80,7 +82,7 @@
                 Other: <input type="radio" name="gender" value="Other" /> <br />
             <label> Birthdate: </label>
                 <img onmouseover="showObj(document.getElementById('birthHint'))" onmouseout="hideObj(document.getElementById('birthHint'))" src="hint.jpeg" height="20px" width="20px"/> <br />
-                <p style="display:none" id="birthHint"> mm/dd/yyyy <br /> </p>
+                <p style="display:none" id="birthHint"> Format: mm/dd/yyyy <br /> </p>
                 <input type="date" name="birthdate" value="<?php echoVar('birthdate')?>" required/> <br />
                 <p id="birthWarning">  </p>
             <input type="submit" value="Submit" />

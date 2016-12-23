@@ -65,12 +65,12 @@
 
 <!-- Form -->
 <html>
-    <title>User Registration Form</title>
+    <title>User Registration</title>
     <head>
         <link rel="stylesheet" type="text/css" href="formStyle.css">
     </head>
     <body>
-        <h1>User Registration Form</h1>
+        <h1>User Registration</h1>
         <div class="clearfix">
         <form action="form.php" method="post" name="form" onsubmit="return validateForm()">
             <label> Username: </label> <br />
