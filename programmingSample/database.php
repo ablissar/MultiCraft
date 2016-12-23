@@ -4,7 +4,7 @@
 
     // Debugging
     echo $_SESSION["username"]."<br />";
-    echo $_SESSION["password"]."<br />";
+    echo $_SESSION["passwordHash"]."<br />";
     echo $_SESSION["name"]."<br />";
     echo $_SESSION["gender"]."<br />";
     echo $_SESSION["birthdate"]."<br />";
@@ -13,7 +13,7 @@
     echo $_SESSION["street"]."<br />";
     echo $_SESSION["city"]."<br />";
     echo $_SESSION["state"]."<br />";
-    echo $_SESSION["zip"]."<br />"; 
+    echo $_SESSION["zip"]."<br />";
 
     // At this point, the data has been validated on both
     // the client and server side and is ready to be

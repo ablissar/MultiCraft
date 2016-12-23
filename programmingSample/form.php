@@ -34,7 +34,7 @@
         // If everything is valid, save info to session and move to next page.
         else {
             $_SESSION["username"] = $username;
-            $_SESSION["password"] = $password;
+            $_SESSION["passwordHash"] = password_hash($password, PASSWORD_DEFAULT);
             Header("Location: userInfoForm.php");
         }
     }
