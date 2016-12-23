@@ -100,6 +100,7 @@
             <input type="button" onclick="location.href='form.php';" value="Go Back" />
             <input type="submit" value="Reset" class="reset"/>
         </form>
+        <p> Page 2 of 3 </p>
         </div>
     </body>
 </html>

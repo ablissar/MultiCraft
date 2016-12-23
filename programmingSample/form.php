@@ -78,7 +78,7 @@
                 <p id="usernameWarning"></p>
             <label> Password: </label>
                 <img onmouseover="showObj(document.getElementById('passHint'))" onmouseout="hideObj(document.getElementById('passHint'))" src="hint.jpeg" height="20px" width="20px"/> <br />
-                <p style="display:none" id="passHint"> Password must be greater than 8 characters and contain at least one letter and one number. <br /> </p>
+                <p style="display:none" id="passHint"> Password must be greater than 8 characters. <br /> </p>
                 <input type="password" name="password" value="<?php echoVar('password')?>" required/> <br />
                 <p id="passwordWarning"></p>
             <label> Confirm Password: </label> <br />
@@ -90,6 +90,7 @@
             <input type="hidden" name="reset" value="true" />
             <input type="submit" value="Reset" class="reset" />
         </form>
+         <p> Page 1 of 3 </p>
         </div>
     </body>
 </html>

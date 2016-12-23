@@ -3,17 +3,18 @@
     session_start();
 
     // Debugging
-    echo $_SESSION["username"]."<br />";
-    echo $_SESSION["passwordHash"]."<br />";
-    echo $_SESSION["name"]."<br />";
-    echo $_SESSION["gender"]."<br />";
-    echo $_SESSION["birthdate"]."<br />";
-    echo $_SESSION["email"]."<br />";
-    echo $_SESSION["phone"]."<br />";
-    echo $_SESSION["street"]."<br />";
-    echo $_SESSION["city"]."<br />";
-    echo $_SESSION["state"]."<br />";
-    echo $_SESSION["zip"]."<br />";
+    echo "Testing"
+    echo "Username: ".$_SESSION["username"]."<br />";
+    echo "Password hash: ".$_SESSION["passwordHash"]."<br />";
+    echo "Name: ".$_SESSION["name"]."<br />";
+    echo "Gender: ".$_SESSION["gender"]."<br />";
+    echo "Birthdate: ".$_SESSION["birthdate"]."<br />";
+    echo "Email: ".$_SESSION["email"]."<br />";
+    echo "Phone: ".$_SESSION["phone"]."<br />";
+    echo "Street: ".$_SESSION["street"]."<br />";
+    echo "City: ".$_SESSION["city"]."<br />";
+    echo "State: ".$_SESSION["state"]."<br />";
+    echo "Zip: ".$_SESSION["zip"]."<br />";
 
     // At this point, the data has been validated on both
     // the client and server side and is ready to be
