@@ -23,4 +23,9 @@
      function hideObj(obj) {
          obj.style.display="none";
      }
+     function clearWarnings(arr) {
+         for (var i = 0; i < arr.length; i++) {
+             document.getElementById(arr[i]+"Warning").innerHTML="";
+         }
+     }
  </script>

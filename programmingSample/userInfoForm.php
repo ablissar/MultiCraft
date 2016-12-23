@@ -55,7 +55,8 @@
              document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
              return false;
          }
-         if( birthdate[0].length != 2 || birthdate[1].length != 2 || birthdate[2].length != 4) {
+         if( birthdate[0].length != 2 || birthdate[1].length != 2 || birthdate[2].length != 4
+                || isNaN(birthdate[0]) || isNaN(birthdate[1]) || isNaN(birthdate[2]) ) {
              document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
              return false;
          }

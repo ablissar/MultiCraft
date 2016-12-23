@@ -38,18 +38,43 @@
 <script>
      // Note: all fields are required by browser, and so are assumed to be non-null.
      function validateForm() {
-         alert("Test1");
+         var city = document.forms["form"]["city"].value;
+         var state = document.forms["form"]["state"].value;
+         var zip = document.forms["form"]["zip"].value;
+         var valid = true;
+         clearWarnings(["phone", "city", "state", "zip"]);
+
+         valid = validatePhone();
+
+         // Checks that city is not a number.
+         if( !isNaN(city) ) {
+             document.getElementById("cityWarning").innerHTML = "Warning: city must contain text.";
+             valid = false;
+         }
+         // Checks that state code is valid.
+         if( state.length != 2 || !isNaN(state[0]) || !isNaN(state[1]) ) {
+             document.getElementById("stateWarning").innerHTML = "Warning: invalid state.";
+             valid = false;
+         }
+         // Checks that zip is valid.
+         if( zip.length != 5 || isNaN(zip) ) {
+             document.getElementById("zipWarning").innerHTML = "Warning: invalid zip code.";
+             valid = false;
+         }
+         if(valid) return true;
+         else return false;
+     }
+
+     function validatePhone() {
          var phone = document.forms["form"]["phone"].value;
          var valid = true;
-
          // Checks phone number is a nubmer.
          if( isNaN(phone) ) {
-             alert("Test2");
              document.getElementById("phoneWarning").innerHTML = "Warning: phone number must not contain any non-numerical characters.";
              valid = false;
          }
+         // Checks phone number length.
          if( phone.length != 10 ) {
-             alert("Test3");
              document.getElementById("phoneWarning").innerHTML = "Warning: phone number must be 10 digits.";
              valid = false;
          }
@@ -76,10 +101,19 @@
                 <input type="text" name="phone" required/> <br />
                 <p id="phoneWarning"></p>
             <label> Address: </label> <br />
-                Street/Apartment: <br /> <input type="text" name="street" required/> <br />
-                City: <br /> <input type="text" name="city" required/> <br />
-                State: <br /> <input type="text" name="state" required/> <br />
-                Zip Code: <br /> <input type="text" name="zip" required/> <br />
+                Street/Apartment: <br />
+                    <input type="text" name="street" required/> <br />
+                City: <br />
+                    <input type="text" name="city" required/> <br />
+                    <p id="cityWarning" > </p>
+                State:
+                    <img onmouseover="showObj(document.getElementById('stateHint'))" onmouseout="hideObj(document.getElementById('stateHint'))" src="hint.jpeg" height="20px" width="20px"/> <br />
+                    <p style="display:none" id="stateHint"> 2 letter code (ex: AL) <br /> </p>
+                    <input type="text" name="state" required/> <br />
+                    <p id="stateWarning" > </p>
+                Zip Code: <br />
+                    <input type="text" name="zip" required/> <br />
+                    <p id="zipWarning" > </p>
             <input type="submit" value="Submit" />
         </form>
         <!-- Form with hidden input to reset fields. -->
