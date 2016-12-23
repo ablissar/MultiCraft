@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- Reset handling and server-side validation -->
 <?php
     session_start();
     include('header.php');
@@ -9,7 +11,7 @@
         unset($_SESSION["password"]);
     }
 
-    // === Server-side validation ===
+    // Server-side validation
     // First check that variables are set (form has been submitted).
     if( isset($_POST["username"]) ) {
         // Then, sanitize each input field (sanitizeInput() can be found in 'header.php').
@@ -37,66 +39,31 @@
         }
     }
  ?>
-<!--<script>
-    // Client-side validation
+
+<!--- Client-side validation -->
+<script>
+    // Note: all fields are required by browser, and so are assumed to be non-null.
     function validateForm() {
-    var valid = true;
-    if (validateUsername() && validatePassword()
-        && validateEmail() && validateName()
-        && validateGender() && validateBirthdate()
-        && validatePhone() && validateAddress() ) {
-            return true;
+        var password = document.forms["form"]["password"].value;
+        var passwordConfirm = document.forms["form"]["passwordConfirm"].value;
+        var valid = true;
+
+        // Checks that passwords are equal.
+        if( password != passwordConfirm ) {
+            document.getElementById("passwordWarning").innerHTML = "Warning: passwords must match.";
+            valid = false;
+        }
+        // Checks that password meets length requirements.
+        if( password.length < 8) {
+            document.getElementById("passwordWarning").innerHTML = "Warning: password is too short.";
+            valid = false;
+        }
+        if(valid) return true;
+        else return false;
     }
-    return false;
-  }
+</script>
 
-  function validateUsername() {
-      if( isset(document.forms["form"]["username"]) ) {
-          var username = document.forms["form"]["username"];
-          // Checks that username is appropriate length and contains no spaces
-          if( username.length > 20 || username.length < 4 || username.includes(' ') ) {
-              return false;
-          }
-          return true;
-      }
-      return false;
-  }
-
-  function validatePassword() {
-      if( isset(document.forms["form"]["password"]) ) {
-          var password = document.forms["form"]["password"];
-          // Checks that password is appropriate length, meets
-          // basic security standards, and matches confirmation password
-          if( password.lenth < 8 ) {
-              return false;
-          }
-          if( password != document.forms["form"]["passwordConfirm"] ) {
-              return false;
-          }
-          return true;
-      }
-      return false;
-  }
-  function validateEmail() {
-
-  }
-  function validateName() {
-
-  }
-  function validateGender() {
-
-  }
-  function validateBirthdate() {
-
-  }
-  function validatePhone() {
-
-  }
-  function validateAddress() {
-
-  }
-</script> -->
-
+<!-- Form -->
 <html>
     <title>User Registration Form</title>
     <head>
@@ -115,16 +82,18 @@
 
         <h1>User Registration Form</h1>
         <div class="clearfix">
-        <form action="form.php" method="post" name="form" >
+        <form action="form.php" method="post" name="form" onsubmit="return validateForm()">
             <label> Username: </label> <br />
-            <input type="text" name="username" value="<?php echoVar('username')?>"/> <br />
+                <input type="text" name="username" value="<?php echoVar('username')?>" required/> <br />
+                <p id="usernameWarning"></p>
             <label> Password: </label>
                 <img onmouseover="showPassHint()" onmouseout="hidePassHint()" src="hint.jpeg" height="20px" width="20px"/> <br />
                 <p style="display:none" id="passHint"> Password must be greater than 8 characters and contain at least one letter and one number. <br /> </p>
-                <input type="password" name="password" value="<?php echoVar('password')?>" /> <br />
+                <input type="password" name="password" value="<?php echoVar('password')?>" required/> <br />
+                <p id="passwordWarning"></p>
             <label> Confirm Password: </label> <br />
-                <input type="password" name="passwordConfirm" /> <br />
-            <input type="submit" value="Submit" />
+                <input type="password" name="passwordConfirm" required/> <br />
+            <input type="submit" value="Submit"/>
         </form>
         <!-- Form with hidden input to reset fields. -->
         <form action="form.php" method="post" name="resetForm">
