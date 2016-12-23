@@ -3,6 +3,12 @@
     session_start();
     include('header.php');
 
+    // Check if reset button has been pressed
+    if( isset($_POST["reset"]) ) {
+        unset($_SESSION["username"]);
+        unset($_SESSION["password"]);
+    }
+
     // === Server-side validation ===
     // First check that variables are set (form has been submitted).
     if( isset($_POST["username"]) ) {
@@ -19,6 +25,10 @@
         else if( $password != $passwordConfirm ) {
             echo ("Error: Passwords must match.");
         }
+        /* Check for password complexity.
+        else if( preg_match('/[A-Za-z]/', $password) && preg_match('/[0-9]/', $password) ) {
+            echo ("Error: Password must contain at least one letter and one number.");
+        }*/
         // If everything is valid, save info to session and move to next page.
         else {
             $_SESSION["username"] = $username;
@@ -104,17 +114,22 @@
         </script>
 
         <h1>User Registration Form</h1>
-        <div>
+        <div class="clearfix">
         <form action="form.php" method="post" name="form" >
             <label> Username: </label> <br />
             <input type="text" name="username" value="<?php echoVar('username')?>"/> <br />
             <label> Password: </label>
                 <img onmouseover="showPassHint()" onmouseout="hidePassHint()" src="hint.jpeg" height="20px" width="20px"/> <br />
-                <p style="display:none" id="passHint"> Password must be greater than 8 characters. <br /> </p>
+                <p style="display:none" id="passHint"> Password must be greater than 8 characters and contain at least one letter and one number. <br /> </p>
                 <input type="password" name="password" value="<?php echoVar('password')?>" /> <br />
             <label> Confirm Password: </label> <br />
                 <input type="password" name="passwordConfirm" /> <br />
             <input type="submit" value="Submit" />
+        </form>
+        <!-- Form with hidden input to reset fields. -->
+        <form action="form.php" method="post" name="resetForm">
+            <input type="hidden" name="reset" value="true" />
+            <input type="submit" value="Reset" class="reset" />
         </form>
         </div>
     </body>

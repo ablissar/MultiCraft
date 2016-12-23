@@ -22,6 +22,12 @@ div {
     background-color: white;
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 label {
     display: inline-block;
     padding-top: 10px;
@@ -29,7 +35,7 @@ label {
 
 input[type=submit], input[type=button] {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
     width: 80px;
     height: 30px;
     background-color: white;
@@ -42,6 +48,6 @@ input[type=submit]:hover, input[type=button]:hover {
     color: white;
 }
 
-input[type=button] {
+.reset {
     float: right;
 }

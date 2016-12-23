@@ -3,6 +3,13 @@
     session_start();
     include('header.php');
 
+    // Check if reset button has been pressed
+    if( isset($_POST["reset"]) ) {
+        unset($_SESSION["name"]);
+        unset($_SESSION["gender"]);
+        unset($_SESSION["birthdate"]);
+    }
+
     // === Server-side validation ===
     // First check that variables are set (form has been submitted).
     if( isset($_POST["name"]) ) {
@@ -37,7 +44,7 @@
     </head>
     <body>
         <h1>Basic Info Form</h1>
-        <div>
+        <div class="clearfix">
         <form action="userInfoForm.php" method="post" name="form" >
             <label> Name: </label> <br />
                 <input type="text" name="name" value="<?php echoVar('name')?>"/> <br />
@@ -48,7 +55,12 @@
             <label> Birthdate: </label> <br />
                 <input type="text" name="birthdate" value="<?php echoVar('birthdate')?>" /> <br />
             <input type="submit" value="Submit" />
+        </form>
+        <!-- Form with hidden input to reset fields. -->
+        <form action="userInfoForm.php" method="post" name="resetForm">
+            <input type="hidden" name="reset" value="true" />
             <input type="button" onclick="location.href='form.php';" value="Go Back" />
+            <input type="submit" value="Reset" class="reset"/>
         </form>
         </div>
     </body>

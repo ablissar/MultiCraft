@@ -39,7 +39,7 @@
     </head>
     <body>
         <h1>Contact Info Form</h1>
-        <div>
+        <div class="clearfix">
         <form action="contactInfoForm.php" method="post" name="form" >
             <label> Email: </label> <br /> <input type="email" name="email" /> <br />
             <label> Phone Number: </label> <br /> <input type="text" name="phone" /> <br />
@@ -50,6 +50,11 @@
             Zip Code: <br /> <input type="text" name="zip" /> <br />
             <input type="submit" value="Submit" />
             <input type="button" onclick="location.href='userInfoForm.php';" value="Go Back" />
+        </form>
+        <!-- Form with hidden input to reset fields. -->
+        <form action="contactInfoForm.php" method="post" name="resetForm">
+            <input type="hidden" name="reset" value="true" />
+            <input type="submit" value="Reset"  />
         </form>
         </div>
     </body>
