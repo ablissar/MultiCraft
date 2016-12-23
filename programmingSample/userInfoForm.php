@@ -51,7 +51,8 @@
      function validateForm() {
          var birthdate = document.forms["form"]["birthdate"].value;
 
-         // Checks that birthdate format is correct (only needed for Firefox).
+         // Checks that birthdate format is correct (only needed for Firefox, since
+         // date box works on Chrome and IE).
          if( -1 == birthdate.indexOf("-") ) {
              document.getElementById("birthWarning").innerHTML = "Warning: incorrect format.";
              return false;

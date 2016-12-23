@@ -27,10 +27,7 @@
         else if( $password != $passwordConfirm ) {
             echo ("Error: Passwords must match.");
         }
-        /* Check for password complexity.
-        else if( preg_match('/[A-Za-z]/', $password) && preg_match('/[0-9]/', $password) ) {
-            echo ("Error: Password must contain at least one letter and one number.");
-        }*/
+
         // If everything is valid, save info to session and move to next page.
         else {
             $_SESSION["username"] = $username;
@@ -75,8 +72,10 @@
         <form action="form.php" method="post" name="form" onsubmit="return validateForm()">
             <label> Username: </label> <br />
                 <input type="text" name="username" value="<?php echoVar('username')?>" required/> <br />
+                <!-- Empty paragraph to be filled in by JavaScript if format is incorrect. -->
                 <p id="usernameWarning"></p>
             <label> Password: </label>
+                <!-- Image that displays format info when moused over. -->
                 <img onmouseover="showObj(document.getElementById('passHint'))" onmouseout="hideObj(document.getElementById('passHint'))" src="hint.jpeg" height="20px" width="20px"/> <br />
                 <p style="display:none" id="passHint"> Password must be greater than 8 characters. <br /> </p>
                 <input type="password" name="password" value="<?php echoVar('password')?>" required/> <br />
