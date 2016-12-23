@@ -1,10 +1,19 @@
 <?php
     function sanitizeInput($input) {
-      $input = trim($input);
-      $input = stripslashes($input);
-      $input = htmlspecialchars($input);
-      return $input;
-  }
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlspecialchars($input);
+        return $input;
+    }
+
+    function echoVar($name) {
+        if(isset($_SESSION[$name])) {
+            echo $_SESSION[$name];
+        }
+        else {
+            echo "";
+        }
+    }
  ?>
 
  <script>

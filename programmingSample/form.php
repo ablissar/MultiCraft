@@ -106,14 +106,15 @@
         <h1>User Registration Form</h1>
         <div>
         <form action="form.php" method="post" name="form" >
-            <label> Username: </label> <br /> <input type="text" name="username" /> <br />
+            <label> Username: </label> <br />
+            <input type="text" name="username" value="<?php echoVar('username')?>"/> <br />
             <label> Password: </label>
-            <img onmouseover="showPassHint()" onmouseout="hidePassHint()" src="hint.jpeg" height="20px" width="20px"/> <br />
-            <p style="display:none" id="passHint"> Password must be greater than 8 characters. <br /> </p>
-            <input type="password" name="password" /> <br />
-            <label> Confirm Password: </label> <br /> <input type="password" name="passwordConfirm" /> <br />
+                <img onmouseover="showPassHint()" onmouseout="hidePassHint()" src="hint.jpeg" height="20px" width="20px"/> <br />
+                <p style="display:none" id="passHint"> Password must be greater than 8 characters. <br /> </p>
+                <input type="password" name="password" value="<?php echoVar('password')?>" /> <br />
+            <label> Confirm Password: </label> <br />
+                <input type="password" name="passwordConfirm" /> <br />
             <input type="submit" value="Submit" />
-            <input type="reset"  />
         </form>
         </div>
     </body>

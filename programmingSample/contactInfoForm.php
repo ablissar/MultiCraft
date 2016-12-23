@@ -50,7 +50,6 @@
             Zip Code: <br /> <input type="text" name="zip" /> <br />
             <input type="submit" value="Submit" />
             <input type="button" onclick="location.href='userInfoForm.php';" value="Go Back" />
-            <input type="reset"  />
         </form>
         </div>
     </body>

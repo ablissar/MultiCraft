@@ -39,15 +39,16 @@
         <h1>Basic Info Form</h1>
         <div>
         <form action="userInfoForm.php" method="post" name="form" >
-            <label> Name: </label> <br /> <input type="text" name="name" /> <br />
+            <label> Name: </label> <br />
+                <input type="text" name="name" value="<?php echoVar('name')?>"/> <br />
             <label> Gender: </label> <br />
-            Male: <input type="radio" name="gender" value="Male" />
-            Female: <input type="radio" name="gender" value="Female"  />
-            Other: <input type="radio" name="gender" value="Other"  /> <br />
-            <label> Birthdate: </label> <br /> <input type="text" name="birthdate" /> <br />
+                Male: <input type="radio" name="gender" value="Male" />
+                Female: <input type="radio" name="gender" value="Female" />
+                Other: <input type="radio" name="gender" value="Other" /> <br />
+            <label> Birthdate: </label> <br />
+                <input type="text" name="birthdate" value="<?php echoVar('birthdate')?>" /> <br />
             <input type="submit" value="Submit" />
             <input type="button" onclick="location.href='form.php';" value="Go Back" />
-            <input type="reset"  />
         </form>
         </div>
     </body>

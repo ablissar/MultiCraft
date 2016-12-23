@@ -16,7 +16,7 @@ h1 {
 
 div {
     margin: auto;
-    width: 40%;
+    width: 400px;
     border: 3px solid darkblue;
     padding: 10px;
     background-color: white;
@@ -27,16 +27,21 @@ label {
     padding-top: 10px;
 }
 
-input[type=submit] {
-    margin-top: 10px;
+input[type=submit], input[type=button] {
+    display: inline-block;
+    margin-top: 20px;
+    width: 80px;
+    height: 30px;
+    background-color: white;
+    color: blue;
+    border-radius: 25px;
 }
 
-input[type="reset"] {
-    margin-top: 10px;
+input[type=submit]:hover, input[type=button]:hover {
+    background-color: blue;
+    color: white;
+}
+
+input[type=button] {
     float: right;
-}
-
-button {
-    display: block;
-    margin: 0 auto;
 }
