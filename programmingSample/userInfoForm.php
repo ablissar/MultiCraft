@@ -5,6 +5,12 @@
     session_start();
     include('header.php');
 
+    // If previous form hasn't been completed, return to it
+    // Comment out for debugging individual page
+    if( !isset($_SESSION["username"]) ) {
+        Header("Location: form.php");
+    }
+
     // Check if reset button has been pressed
     if( isset($_POST["reset"]) ) {
         unset($_SESSION["name"]);

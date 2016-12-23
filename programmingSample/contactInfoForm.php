@@ -5,6 +5,12 @@
     session_start();
     include('header.php');
 
+    // If previous form hasn't been completed, return to it
+    // Comment out for debugging individual page
+    if( !isset($_SESSION["name"]) ) {
+        Header("Location: userInfoForm.php");
+    }
+
     // === Server-side validation ===
     // First check that variables are set (form has been submitted).
     if( isset($_POST["email"]) ) {
