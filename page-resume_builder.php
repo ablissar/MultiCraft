@@ -257,10 +257,27 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
 
 
 		// Title
+		if ( empty( $title ) || ! valid_name( $title ) )
+		{
+			$errors['references'][$index]['title'] = 'Invalid title.';
+			$valid_row = FALSE;
+		}
+		else
+		{
+			$row['title'] = $title;
+		}
 
 
 		// Description
-
+		if ( empty( $description ) || ! is_string( $description ) )
+		{
+			$errors['references'][$index]['description'] = 'Invalid description.';
+			$valid_row = FALSE;
+		}
+		else
+		{
+			$row['description'] = $description;
+		}
 
 
 		if ( $valid_row )
@@ -286,6 +303,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
 		if ( empty( $name ) || ! valid_name( $name ) )
 		{
 			$errors['references'][$index]['name'] = 'Invalid name.';
+			$valid_row = FALSE;
 		}
 		else
 		{
@@ -296,6 +314,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
 		if ( empty( $phone ) || ! valid_phone_number( $phone ) )
 		{
 			$errors['references'][$index]['phone'] = 'Invalid phone number.';
+			$valid_row = FALSE;
 		}
 		else
 		{
@@ -306,6 +325,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
 		if ( empty( $company ) || ! vallid_name( $company ) )
 		{
 			$errors['references'][$index]['company'] = 'Invalid company name.';
+			$valid_row = FALSE;
 		}
 		else
 		{
@@ -316,6 +336,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
 		if ( empty( $years_acquainted ) || ! valid_years_acquainted( $years_acquainted ) )
 		{
 			$errors['references'][$index]['years_acquainted'] = 'Invalid number of years.';
+			$valid_row = FALSE;
 		}
 		else
 		{
