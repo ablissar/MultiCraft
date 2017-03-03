@@ -96,7 +96,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
 
 	// Address (State): we want to validate that in case they change the value on the client.
 	// You can use the state helper
-	if( empty( $state ) || ! is_valid_state( $state, 'code' ) )
+	if( empty( $state ) || ! valid_state( $state, 'code' ) )
 	{
 		$errors['state'] = 'Invalid state.';
 	}
@@ -283,16 +283,44 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
 
 
 		// Name
-
+		if ( empty( $name ) || ! valid_name( $name ) )
+		{
+			$errors['references'][$index]['name'] = 'Invalid name.';
+		}
+		else
+		{
+			$row['name'] = $name;
+		}
 
 		// Phone
-
+		if ( empty( $phone ) || ! valid_phone_number( $phone ) )
+		{
+			$errors['references'][$index]['phone'] = 'Invalid phone number.';
+		}
+		else
+		{
+			$row['phone'] = $phone;
+		}
 
 		// Company
-
+		if ( empty( $company ) || ! vallid_name( $company ) )
+		{
+			$errors['references'][$index]['company'] = 'Invalid company name.';
+		}
+		else
+		{
+			$row['company'] = $company;
+		}
 
 		// Years Known
-
+		if ( empty( $years_acquainted ) || ! valid_years_acquainted( $years_acquainted ) )
+		{
+			$errors['references'][$index]['years_acquainted'] = 'Invalid number of years.';
+		}
+		else
+		{
+			$row['years_acquainted'] = $years_acquainted;
+		}
 
 
 		if ( $valid_row )
@@ -1449,6 +1477,21 @@ function valid_zipcode( $str )
 // ------------------------------------------------------------------------
 
 /**
+ * Valid years acquainted
+ *
+ * Returns true if $str is numberic, between 1 and 99
+ *
+ *@param  string
+ *@return bool
+ */
+function valid_years_acquainted( $str )
+{
+	return (bool) preg_match( '/^(0?[1-9]|[1-9][0-9])$/', $str );
+}
+
+// ------------------------------------------------------------------------
+
+/**
  * Valid phone number
  *
  *@param  string
@@ -1507,7 +1550,7 @@ function valid_date( $str )
  * @param	string	$mode 		'code', 'name', 'both'
  * @return	bool
  */
-function is_valid_state( $string, $mode = 'both' )
+function valid_state( $string, $mode = 'both' )
 {
 	$valid 	= FALSE;
 	$states = get_states_array();
@@ -1522,7 +1565,7 @@ function is_valid_state( $string, $mode = 'both' )
 	}
 	elseif ( $mode === 'both' )
 	{
-		$valid = is_valid_state( $string, 'code' ) || is_valid_state( $string, 'name' );
+		$valid = valid_state( $string, 'code' ) || valid_state( $string, 'name' );
 	}
 
 	return $valid;
